@@ -1,0 +1,206 @@
+@font-face {
+	font-family: "SpaceMonoBold";
+	src: url('./assets/fonts/SpaceMono-Bold.ttf');
+}
+@font-face {
+	font-family: "SpaceMonoBoldItalic";
+	src: url('./assets/fonts/SpaceMono-BoldItalic.ttf');
+}
+@font-face {
+	font-family: "SpaceMonoReg";
+	src: url('./assets/fonts/SpaceMono-Regular.ttf');
+}
+
+
+
+//CSS Reset
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+//----------------------------------------------------
+
+.main-container{
+	height: 100vh;
+	width: 100%;
+	background-color: #222;
+	display: flex;
+	justify-content: center;
+	// padding-bottom: 60px;
+	.main-inner{
+		width: calc(100% - 120px);
+		display: flex;
+		flex-direction: column;
+		margin-top: 60px;
+		margin-bottom: 60px;
+		.cipher-container{
+			display: flex;
+			width: 100%;
+			justify-content: space-between;
+
+			.fact-container{
+				width: 30%;
+				display: flex;
+				flex-direction: column;
+				
+				.name{
+					font-family: "SpaceMonoBold";
+					font-size: 1.5rem;
+					color: #eee;
+					margin-bottom: 30px;
+				}
+
+				.para{
+					font-family: "SpaceMonoReg";
+					font-size: 14px;
+					line-height: 1.5;
+					color: #cbcbcb;
+				}
+			}
+
+			.computing-container{
+				// width: 60%;
+				display: flex;
+				flex-direction: column;
+
+				.alphabet-container{
+					width: 100%;
+					display: flex;
+					border-left: 1px solid #cbcbcb;
+					margin-bottom: 30px;
+					.letter{
+						border-right: 1px solid #cbcbcb;
+						border-top: 1px solid #cbcbcb;
+						border-bottom: 1px solid #cbcbcb;
+						font-family: "SpaceMonoReg";
+						padding: 10px;
+					}
+				}
+
+				.mapped-container{
+					width: 100%;
+					display: flex;
+					border-left: 1px solid #cbcbcb;
+					margin-bottom: 30px;
+					.letter{
+						border-right: 1px solid #cbcbcb;
+						border-top: 1px solid #cbcbcb;
+						border-bottom: 1px solid #cbcbcb;
+						font-family: "SpaceMonoReg";
+						padding: 10px;
+					}
+				}
+
+				.form-container{
+					// width: 100%;
+					display: flex;
+					flex-direction: column;
+					
+					.input-container{
+						display: flex;
+						width: 100%;
+						align-items: space-between;
+						.row{
+							display: flex;
+							width: 50%;
+							column-gap: 30px;
+							align-items: center;
+							margin-bottom: 20px;
+							label{
+								font-family: "SpaceMonoReg";
+								font-size: 14px;
+							}
+	
+							input{
+								height: 25px;
+								width: 50%;
+								border: 0.5px solid #555;
+								border-radius: 0.2rem;
+								background-color: transparent;
+								font-family: "SpaceMonoReg";
+	
+								padding-left: 10px;
+							}
+	
+							
+						}
+					}
+
+					.output-container{
+						display: flex;
+						align-items: center;
+						column-gap: 30px;
+						margin-bottom: 30px;
+						label{
+							font-family: "SpaceMonoReg";
+							font-size: 14px;
+						}
+
+						textarea{
+							height: 25px;
+							width: 50%;
+							border: 0.5px solid #555;
+							border-radius: 0.2rem;
+							background-color: transparent;
+							font-family: "SpaceMonoReg";
+							padding-top: 5px;
+							padding-left: 10px;
+						}	
+					}
+
+					button{
+						width: max-content;
+						padding: 10px;
+						padding-left: 20px;
+						padding-right: 20px;
+						border-radius: 0.2rem;
+						font-family: "SpaceMonoReg";
+						background-color: transparent;
+						border: 0.5px solid #555;
+						font-size: 18px;
+					}
+				}
+			}
+		}
+	}
+}
