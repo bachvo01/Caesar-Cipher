@@ -53,7 +53,7 @@ function App() {
     setInput("")
     setOutput("")
     setIsClicked(false)
-    setSelectedOption(350)
+    // setSelectedOption(350)
     setStep(0)
   }
 
