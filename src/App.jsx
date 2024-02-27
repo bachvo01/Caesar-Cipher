@@ -122,7 +122,7 @@ function App() {
                 <div className='row two'>
                   <label htmlFor='text-area'>Output text:</label>
                   {
-                    isClicked === false && <textarea id='text-area' name='textarea' rows={5} value={output} onChange={e => setOutput(e.target.value)}>{output}</textarea>
+                    isClicked === false && <textarea id='text-area' name='textarea' disabled rows={5} value={output} onChange={e => setOutput(e.target.value)}>{output}</textarea>
                   }
                   {/* {
                     output && <Typewriter text={output} speed={selectedOption}></Typewriter>

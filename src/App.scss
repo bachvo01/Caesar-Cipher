@@ -193,7 +193,7 @@ textarea{
 								min-height: 150px;
 								max-height: 200px;
 								width: 100%;
-								border: 0.5px dashed #555;
+								border: 0.5px solid #555;
 								border-radius: 0.2rem;
 								font-size: 14px;
 								background-color: transparent;
@@ -230,42 +230,6 @@ textarea{
 								}
 							}
 
-							// &.two{
-							// 	width: 50%;
-							// 	input{
-							// 		width:  30%;
-							// 	}
-
-							// 	.input-highlight-container{
-							// 		height: 150px;
-							// 		width: 100%;
-							// 		border: 0.5px solid #555;
-							// 		border-radius: 0.2rem;
-							// 		font-size: 14px;
-							// 		background-color: transparent;
-							// 		font-family: "SpaceMonoReg";
-							// 		padding-top: 10px;
-							// 		padding-bottom: 5px;
-							// 		padding-left: 10px;
-							// 		padding-right: 10px;
-	
-							// 		span{
-							// 			// display: flex;
-							// 			// align-items: center;
-							// 			// // justify-content: center;
-							// 		}
-							// 		.highlight{
-							// 			background-color: #cbcbcb;
-							// 			color: #222;
-							// 			// height: 80%;
-							// 		}
-							// 	}
-							// }
-							// label{
-							// 	font-family: "SpaceMonoReg";
-							// 	font-size: 14px;
-							// }
-
 							label{
 								font-family: "SpaceMonoReg";
 								font-size: 14px;
@@ -285,7 +249,7 @@ textarea{
 							textarea{
 								// height: 25px;
 								// width: 50%;
-								border: 0.5px dashed #555;
+								border: 0.5px solid #555;
 								border-radius: 0.2rem;
 								background-color: transparent;
 								font-family: "SpaceMonoReg";
@@ -294,8 +258,12 @@ textarea{
 								padding-left: 10px;
 								resize: none;
 							}
-	
 							
+							&.two{
+								textarea{
+									
+								}
+							}
 						}
 					}
 
@@ -321,6 +289,12 @@ textarea{
 								border: 1px solid #ccc;
 								border-radius: 50%;
 								margin-right: 10px;
+								cursor: pointer;
+								transition: 0.3s ease;
+								&:hover{
+									background-color: #555;
+									transition: 0.3s ease;
+								}
 							  }
 							  
 							  /* Style the custom radio button when checked */
@@ -443,7 +417,7 @@ textarea{
 					}
 
 					.para{
-						font-size: 0.936vw;
+						font-size: 0.9vw;
 					}
 				}
 
@@ -467,7 +441,7 @@ textarea{
 								.input-highlight-container{
 									min-height: calc(10.027vh * 2);
 									max-height: calc(13.369vh * 2);
-									font-size: 0.936vw;
+									font-size: 0.9vw;
 	
 									.para{
 										color: #cbcbcb;
@@ -486,12 +460,32 @@ textarea{
 										height: 50%;
 									}
 								}
+
+								label{
+									font-size: 0.9vw;
+								}
 							}
+
+							
 
 							textarea{
 								min-height: calc(10.027vh * 2);
 								max-height: calc(13.369vh * 2);
+								font-size: 0.9vw;
 							}
+						}
+
+						.output-container{
+							.column{
+
+							}
+
+							label{
+								font-size: 0.9vw;
+							}
+						}	
+						button{
+							font-size: 1.07vw;
 						}
 					}
 				}
