@@ -15,6 +15,7 @@ function App() {
   const [step, setStep] = useState(0)
   const [output, setOutput] = useState("")
   const [isClicked, setIsClicked] = useState(false)
+  console.log(screen.width)
   const [alphaOne, setAlphaOne] = useState({
     index : 0,
     char : ""
