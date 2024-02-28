@@ -73,6 +73,7 @@ textarea{
 
 
 .main-container{
+	position: relative;
 	height: 100vh;
 	width: 100%;
 	background-color: #222;
@@ -113,79 +114,108 @@ textarea{
 				width: 60%;
 				display: flex;
 				flex-direction: column;
-
 				.alphabet-container{
 					width: 100%;
-					display: inline-grid;
-					grid-template-columns: repeat(26, 1fr);
-					grid-gap : 1px;
-					// border-left: 1px solid #cbcbcb;
+					display: table;
+					box-sizing: border-box;
+					border-collapse: collapse;
 					margin-bottom: 30px;
-					.letter{
-						display: flex;
-						justify-content: center;
-						align-items: center;
-						height: 100%;
-						width: 100%;
-						font-family: "SpaceMonoReg";
-						outline: 1px solid #555;
-						padding-top: 5px;
-						padding-bottom: 5px;
-						font-size: 1vw;
-						// padding: 1px;
-						// border-right: 1px solid #cbcbcb;
-						// border-top: 1px solid #cbcbcb;
-						// border-bottom: 1px solid #cbcbcb;
-						// padding: 10px;
 
-						&.highlighted{
-							background-color: #555;
-							color : #cbcbcb;
+					.row{
+						display: table-row;
+
+						.letter{
+							display: table-cell;
+							justify-content: center;
+							align-items: center;
+							height: 2em;
+							width: 2em;
+							font-family: "SpaceMonoReg";
+							border: 1px solid #555;
+							padding-top: 5px;
+							padding-bottom: 5px;
+							font-size: 1vw;
+							vertical-align: middle;
+							text-align: center;
+
+							// padding: 1px;
+							// border-right: 1px solid #cbcbcb;
+							// border-top: 1px solid #cbcbcb;
+							// border-bottom: 1px solid #cbcbcb;
+							// padding: 10px;
+	
+							&.highlighted{
+								background-color: #cbcbcb;
+								color : #222;
+							}
 						}
 					}
 				}
 
-				.mapped-container{
+					
+				.mapped-outer{
 					width: 100%;
-					display: inline-grid;
-					grid-template-columns: repeat(26, 1fr);
-					grid-gap : 1px;
-					// border-left: 1px solid #cbcbcb;
 					margin-bottom: 30px;
-					.letter{
-						display: flex;
-						justify-content: center;
-						align-items: center;
-						height: 100%;
-						width: 100%;
-						font-family: "SpaceMonoReg";
-						outline: 1px solid #555;
-						padding-top: 5px;
-						padding-bottom: 5px;
-						font-size: 1vw;
+					border-right: 1px solid #555;
+					overflow: hidden;
+					.mapped-container{
+						width: 200%;
+						display: table;
+						border-collapse: collapse;
+						overflow: hidden;
+							.mapped-inner{
+								height: 100%;
+								width: 100%;
+								display: table-row;
+								grid-gap : 1px;
 
-						&.highlighted{
-							background-color: #555;
-							color : #cbcbcb;
+								.letter{
+									display: table-cell;
+									justify-content: center;
+									align-items: center;
+									height: 2em;
+									width: 2em;
+									font-family: "SpaceMonoReg";
+									border: 1px solid #555;
+									padding-top: 5px;
+									padding-bottom: 5px;
+									font-size: 1vw;
+									vertical-align: middle;
+									text-align: center;
+									color: #555;
+			
+									&.highlighted{
+										background-color: #cbcbcb;
+										color : #222;
+									}
+								}
+
+								&.encrypted{
+									.letter{
+										color: #eee;
+									}
+									
+								}
+							}
+
+							
 						}
-					}
 				}
 
 				.form-container{
 					width: 100%;
 					display: flex;
 					flex-direction: column;
-					margin-top: 15px;
 					.input-container{
 						display: grid;
 						grid-template-columns: repeat(2, 1fr);
 						width: 100%;
-						column-gap: 15px;
+						column-gap: 1.003vw;
 						
 						.row{
 							display: flex;
 							flex-direction: column;
-							row-gap: 15px;
+							row-gap: 1.003vw;
 							width: 100%;
 							margin-bottom: 30px;
 
@@ -253,7 +283,7 @@ textarea{
 								border-radius: 0.2rem;
 								background-color: transparent;
 								font-family: "SpaceMonoReg";
-								padding-top: 5px;
+								padding-top: 10px;
 								padding-bottom: 5px;
 								padding-left: 10px;
 								resize: none;
@@ -439,8 +469,8 @@ textarea{
 								margin-bottom: calc(1.003vw * 2);
 
 								.input-highlight-container{
-									min-height: calc(10.027vh * 2);
-									max-height: calc(13.369vh * 2);
+									min-height: calc(10vh * 2);
+									max-height: calc(13vh * 2);
 									font-size: 0.9vw;
 	
 									.para{
@@ -469,8 +499,8 @@ textarea{
 							
 
 							textarea{
-								min-height: calc(10.027vh * 2);
-								max-height: calc(13.369vh * 2);
+								min-height: calc(10vh * 2);
+								max-height: calc(13vh * 2);
 								font-size: 0.9vw;
 							}
 						}

@@ -1,21 +1,24 @@
 import { useEffect, useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.scss'
 import { caesarCipher } from './function/CaesarCipher'
 import { shift } from './function/Shift'
 import Highlighter from './function/Highlighter'
 import { GiTortoise } from "react-icons/gi"
 import { GiRabbit } from "react-icons/gi";
-import Typewriter from './function/Typewriter'
+import {motion, AnimatePresence} from "framer-motion"
+import Footer from './components/Footer'
+
 function App() {
   const alphabet = ["A", "B", "C" ,"D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
   const [mapped, setMapped] = useState([])
   const [input, setInput] = useState("")
+  const [isClicked, setIsClicked] = useState(false)
+  const [extended, setExtended] = useState(isClicked === false ? alphabet : [])
   const [step, setStep] = useState(0)
   const [output, setOutput] = useState("")
-  const [isClicked, setIsClicked] = useState(false)
+  const [offset, setOffset] = useState(0)
   console.log(screen.width)
+
   const [alphaOne, setAlphaOne] = useState({
     index : 0,
     char : ""
@@ -54,7 +57,7 @@ function App() {
     setInput("")
     setOutput("")
     setIsClicked(false)
-    // setSelectedOption(350)
+    setExtended(alphabet)
     setStep(0)
   }
 
@@ -65,6 +68,16 @@ function App() {
     setIsClicked(true)
   }
 
+  useEffect(() => {
+    setOffset((prev) => prev + 0.5)
+  }, [step, isClicked])
+
+  const stepCalculator = (step) => {
+    const result = Math.round(step * (1 / 26 * 50) * 1000) / 1000
+    return result
+  }
+
+  
   return (
     <div className='main-container'>
       <div className='main-inner'>
@@ -75,44 +88,94 @@ function App() {
           </div>
           <div className='computing-container'>
             <div className='alphabet-container'>
+              <div className='row'>
               {
                 alphabet.map((letter, index) => {
                   if(letter === alphaOne.char.toUpperCase()){
                     return(
-                      <h1 key={index} className='letter highlighted'>{letter}</h1>
+                      <span key={index} className='letter highlighted'>{letter}</span>
                     )
                   }
                   else{
                     return(
-                      <h1 key={index} className='letter'>{letter}</h1>
+                      <span key={index} className='letter'>{letter}</span>
                     )
                   }
                   
                 })
               }
-            </div>
-            <div className='mapped-container'>
-              {
-                mapped.length > 0 && mapped.map((letter, index) => {
-                  if(letter === alphaTwo.char.toUpperCase()){
-                    return(
-                      <h1 key={index} className='letter highlighted'>{letter}</h1>
-                    )
-                  }
-                  return(
-                    <h1 key={index} className='letter'>{letter}</h1>
-                  )
-                })
-              }
-              
+              </div>
               
             </div>
+            <AnimatePresence>
+            <div className='mapped-outer'>
+                <div className='mapped-container' style={isClicked ? {width : '100%'} : {width : '200%'}}>
+                {
+                  isClicked === false ?
+                    <motion.div key='shift'
+                    className='mapped-inner'
+                    initial = {{opacity : 0}} exit= {{opacity : 0}} 
+                    // style={{width : `calc(100% + ${calculator(step)}%)`, gridTemplateColumns : `repeat(${parseInt(length) + parseInt(step)}, 1fr)`}}
+                    animate={{opacity : 1, transform : `translateX(-${stepCalculator(step)}%) translateX(${0}px)`}}
+                    transition={{duration: 0.35, type : "just", stiffness : 150}}>
+                      {
+                          extended.map((letter, index) => {
+                            if(letter === alphaOne.char.toUpperCase()){
+                              return(
+                                <span key={index} className='letter highlighted'>{letter}</span>
+                              )
+                            }
+                            else{
+                              return(
+                                <span key={index} className='letter'>{letter}</span>
+                              )
+                            }
+                          })
+                        }
+                      {
+                          extended.map((letter, index) => {
+                            if(letter === alphaOne.char.toUpperCase()){
+                              return(
+                                <span key={index} className='letter highlighted'>{letter}</span>
+                              )
+                            }
+                            else{
+                              return(
+                                <span key={index} className='letter'>{letter}</span>
+                              )
+                            }
+                          })
+                      }
+                  </motion.div>
+                  :
+                  <motion.div key="encrypt" initial = {{opacity : 0}} animate = {{opacity : 1}} transition={{duration: 0.35}} exit= {{opacity : 0}}
+                  className='mapped-inner encrypted'>
+                    {
+                      mapped.length > 0 && mapped.map((letter, index) => {
+                        if(letter === alphaTwo.char.toUpperCase()){
+                          return(
+                            <h1 key={index} className='letter highlighted'>{letter}</h1>
+                          )
+                        }
+                        return(
+                          <h1 key={index} className='letter'>{letter}</h1>
+                        )
+                      })
+                    }
+                  </motion.div>
+                }
+              </div>
+            </div>
+            
+            </AnimatePresence>
+              
+            
             <form onSubmit={handleSubmit} className='form-container'>
               <div className='input-container'>
                 <div className='row one'>
                   <label htmlFor = 'text-input'>Input text:</label>
                   {
-                    isClicked === false && <textarea id = 'text-input' type='textarea' rows={5} onChange={(e) => {setInput(e.target.value)}} value={input}></textarea>
+                    isClicked === false && <textarea id = 'text-input' type='textarea' onChange={(e) => {setInput(e.target.value)}} value={input}></textarea>
                   }                    
                   {
                     isClicked && <Highlighter string = {input} speed ={selectedOption} updateClicked = {updateClicked} updateComparison = {updateInput}></Highlighter>
@@ -122,11 +185,8 @@ function App() {
                 <div className='row two'>
                   <label htmlFor='text-area'>Output text:</label>
                   {
-                    isClicked === false && <textarea id='text-area' name='textarea' disabled rows={5} value={output} onChange={e => setOutput(e.target.value)}>{output}</textarea>
+                    isClicked === false && <textarea id='text-area' name='textarea' disabled value={output} onChange={e => setOutput(e.target.value)}>{output}</textarea>
                   }
-                  {/* {
-                    output && <Typewriter text={output} speed={selectedOption}></Typewriter>
-                  } */}
                   {
                     output && <Highlighter string = {output} speed ={selectedOption} updateClicked = {updateClicked} updateComparison = {updateOutput}></Highlighter>
                   }
@@ -175,13 +235,12 @@ function App() {
               <div className='button-wrapper'>
                 <button type='submit'>Encrypt</button>
                 <button type='reset' className='reset-button' onClick={handleReset}>Reset</button>
-              </div>
-              
+              </div>       
             </form>
-            {/* <p>Selected option : {selectedOption}</p> */}
           </div>
         </div>
       </div>
+      <Footer></Footer>
     </div>
   )
 }

@@ -46,7 +46,7 @@ function Highlighter(props) {
           {
             input.split("").map((char, index) => {
               return(
-                <span key={index} className={index === currentIdx ? "highlight" : ""} style={index === prevIdx ? { backgroundColor: "transparent" } : null}>{char}</span>
+                <span key={index} className={index === currentIdx ? "highlight" : ""} style={index === prevIdx ? { backgroundColor: "transparent"} : null}>{char}</span>
               )
               
             })

@@ -1,0 +1,35 @@
+@font-face {
+	font-family: "SpaceMonoBold";
+	src: url('./assets/fonts/SpaceMono-Bold.ttf');
+	font-display: block;
+}
+@font-face {
+	font-family: "SpaceMonoBoldItalic";
+	src: url('./assets/fonts/SpaceMono-BoldItalic.ttf');
+	font-display: block;
+}
+@font-face {
+	font-family: "SpaceMonoReg";
+	src: url('./assets/fonts/SpaceMono-Regular.ttf');
+	font-display: block;
+}
+
+.footer-container{
+    position: absolute;
+    bottom: 20px;
+    left: 120px;
+    display: flex;
+    column-gap: 5px;
+    align-items: center;
+    a{
+        font-family: "SpaceMonoReg";
+        color: #cbcbcb;
+        font-size: 0.8vw;
+    }
+
+    .sep{
+        width: 2px;
+        height: 10px;
+        background-color: #cbcbcb;
+    }
+}
