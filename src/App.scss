@@ -193,6 +193,11 @@ textarea{
 								&.encrypted{
 									.letter{
 										color: #eee;
+
+										&.highlighted{
+											background-color: #cbcbcb;
+											color : #222;
+										}
 									}
 									
 								}
