@@ -209,7 +209,7 @@ function App() {
                           <span className="checkmark"></span>
                         </label>
                         <label className='option'>
-                          <input type='radio' name='speed' value={200} id='level-three' checked onChange={handleOptionChange}></input>
+                          <input type='radio' name='speed' value={200} id='level-three' defaultChecked onChange={handleOptionChange}></input>
                           <span className="checkmark"></span>
                         </label>
                         <label className='option'>
