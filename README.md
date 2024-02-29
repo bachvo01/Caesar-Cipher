@@ -22,7 +22,7 @@ A Caesar cipher with a shift of
 1
 1 would encode an A as a B, an M as an N, and a Z as an A, and so on. The method is named after Roman leader Julius Caesar, who used it in his private correspondence.
 
-This project is a visualisation of Caesar Cipher - one of the oldest cipher in the human history. The main goal is to provide users an intuitive vision of how the cipher works. 
+This project is a visualisation of Caesar Cipher - one of the oldest cipher in the human history. The main goal is to provide users an intuitive vision of how the cipher works. &ensp;
 
 ## History
 
