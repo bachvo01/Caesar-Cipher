@@ -28,8 +28,16 @@
     }
 
     .sep{
-        width: 2px;
-        height: 10px;
+        width: 1px;
+        height: 1vw;
         background-color: #cbcbcb;
     }
+}
+
+/* Extra large screens */
+@media only screen and (min-width: 1440px) and (max-width: 2559px) {
+    .footer-container{
+        left: 8.021vw;
+    }   
+
 }
