@@ -1,4 +1,7 @@
+
+
 <div align ='center'>
+    <img src ='./public/logo.png' width = '60px'></img>
     <h3>Caesar Cipher</h3>
     <p align = 'center'>
         <a href='https://caesar-cipher-gkeb.onrender.com/'>View Demo</a>
@@ -7,7 +10,9 @@
         |
         <a href='#History'>History</a>
         |
-        <a href='#Work'>Break the Cipher</a>
+        <a href='https://github.com/bachvo01/Caesar-Cipher/issues'>Report Bugs</a>
+        |
+        <a href='https://github.com/bachvo01/Caesar-Cipher/issues'>Request Features</a>
     </p>
 </div>
 
@@ -50,5 +55,10 @@ This was the first documented use of a substitution cipher for military purposes
 
 Caesar shifted each letter of his message three letters to the right to produce what could be called the ciphertext.
 
+## References
+- https://en.wikipedia.org/wiki/Julius_Caesar
+- https://en.wikipedia.org/wiki/Caesar_cipher
+- https://brilliant.org/wiki/caesar-cipher/
+- https://academic.oup.com/book/40641/chapter-abstract/348304993?redirectedFrom=fulltext
 
 
