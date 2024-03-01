@@ -78,8 +78,24 @@ textarea{
 	width: 100%;
 	background-color: #222;
 	display: flex;
-	justify-content: center;
+	// justify-content: space-between;
 	// padding-bottom: 60px;
+
+	.sidebar-container{
+		height: 100%;
+		width: 60px;
+		display: flex;
+		flex-direction: column;
+		border-right: 1px solid #55555570;
+		// row-gap: ;
+		justify-content: center;
+		align-items: center;
+
+		.sidebar-elements{
+			position: relative;
+
+		}
+	}
 	.main-inner{
 		width: calc(100% - 240px);
 		display: flex;
@@ -439,10 +455,34 @@ textarea{
 /* Extra large screens */
 @media only screen and (min-width: 1440px) and (max-width: 2559px) {
 	.main-container{
+		.sidebar-container{
+			width: 60px;
+			row-gap: 30px;
+
+			.sidebar-elements{
+
+				.icon{
+					font-size: 20px;
+					color: #555;
+				}
+
+				&.selected{
+					border-radius: 20%;
+					border: 1px solid #555;
+					padding: 7px;
+					.icon{
+						color: #cbcbcb
+					}
+				}
+			}
+		}
 		
 		.main-inner{
-			width: calc(100% - 16.043vw);
+			width: calc(100% - 60px);
+			// width: calc(100% - 16.043vw);
 			margin-top: 4.011vw;
+			padding-right: 60px;
+			padding-left: 60px;
 			.cipher-container{
 
 				.fact-container{
@@ -520,7 +560,7 @@ textarea{
 							}
 						}	
 						button{
-							font-size: 1.07vw;
+							font-size: 1vw;
 						}
 					}
 				}

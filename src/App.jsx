@@ -7,6 +7,14 @@ import { GiTortoise } from "react-icons/gi"
 import { GiRabbit } from "react-icons/gi";
 import {motion, AnimatePresence} from "framer-motion"
 import Footer from './components/Footer'
+import { FaGithub } from "react-icons/fa";
+import { FaInfo } from "react-icons/fa";
+import { BsAlphabetUppercase } from "react-icons/bs";
+import { GrCircleInformation } from "react-icons/gr";
+import { BiBug } from "react-icons/bi";
+import { FaHome } from "react-icons/fa";
+import { BsHouse } from "react-icons/bs";
+import Tag from './components/Tag'
 
 function App() {
   const alphabet = ["A", "B", "C" ,"D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
@@ -17,8 +25,11 @@ function App() {
   const [step, setStep] = useState(0)
   const [output, setOutput] = useState("")
   const [offset, setOffset] = useState(0)
-  console.log(screen.width)
-
+  const [hovered, setHovered] = useState({
+    status : false,
+    item : ""
+  })
+  const [selectedOption, setSelectedOption] = useState(350)
   const [alphaOne, setAlphaOne] = useState({
     index : 0,
     char : ""
@@ -29,12 +40,15 @@ function App() {
     char : ""
   })
 
-  const [selectedOption, setSelectedOption] = useState(350)
+  console.log(screen.width)
 
+  // Handles the option input values
   const handleOptionChange = (e) => {
     setSelectedOption(e.target.value)
   }
 
+
+  // Update the current letter in input 
   const updateInput = (idx, c) => {
     setAlphaOne({
       index : idx,
@@ -42,16 +56,20 @@ function App() {
     })
   }
 
+  // Update the current letter in output
   const updateOutput = (idx, c) => {
     setAlphaTwo({
       index : idx,
       char : c
     })
   }
+
+  // Handles click event
   const updateClicked = (value) => {
     setIsClicked(value)
   }
 
+  // Resets the input fields
   const handleReset = () => {
     setMapped([])
     setInput("")
@@ -61,6 +79,7 @@ function App() {
     setStep(0)
   }
 
+  // Handles the submit event
   const handleSubmit = (e) => {
     e.preventDefault()
     setMapped(shift(alphabet, step))
@@ -68,10 +87,25 @@ function App() {
     setIsClicked(true)
   }
 
+  // Handles the hover in event
+  const handleHoverIn = (e) => {
+    console.log(e.target)
+    setHovered({
+      status : true,
+      item : e.target.getAttribute('id')
+    })
+  }
+
+  // Handles the hover out event
+  const handleHoverOut = (e) => {
+    setHovered(false)
+  }
+
   useEffect(() => {
     setOffset((prev) => prev + 0.5)
   }, [step, isClicked])
 
+  // Calculates the shifting step
   const stepCalculator = (step) => {
     const result = Math.round(step * (1 / 26 * 50) * 1000) / 1000
     return result
@@ -80,6 +114,23 @@ function App() {
   
   return (
     <div className='main-container'>
+      <div className='sidebar-container'>
+        <div className='sidebar-elements selected' onMouseEnter={handleHoverIn} onMouseLeave={handleHoverOut}>
+          <BsHouse className='icon'></BsHouse>
+        </div>
+        <div className='sidebar-elements'  onMouseEnter={handleHoverIn} onMouseLeave={handleHoverOut}>
+          <GrCircleInformation className='icon'></GrCircleInformation>
+        </div>
+        <div className='sidebar-elements' id = 'alphabets' onMouseEnter={handleHoverIn} onMouseLeave={handleHoverOut}>
+          <BsAlphabetUppercase className='icon'></BsAlphabetUppercase>
+        </div>
+        <div className='sidebar-elements' onMouseEnter={handleHoverIn} onMouseLeave={handleHoverOut}>
+          <BiBug className='icon'></BiBug>
+        </div>
+        <div className='sidebar-elements' onMouseEnter={handleHoverIn} onMouseLeave={handleHoverOut}>
+          <FaGithub className='icon'></FaGithub>
+        </div>
+      </div>
       <div className='main-inner'>
         <div className='cipher-container'>
           <div className='fact-container'>
@@ -240,7 +291,7 @@ function App() {
           </div>
         </div>
       </div>
-      <Footer></Footer>
+      {/* <Footer></Footer> */}
     </div>
   )
 }
