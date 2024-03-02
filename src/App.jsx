@@ -1,12 +1,14 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useRef } from 'react'
 import './App.scss'
 import { caesarCipher } from './function/CaesarCipher'
 import { shift } from './function/Shift'
 import Highlighter from './function/Highlighter'
+import {motion, AnimatePresence, FlatTree} from "framer-motion"
+import Tag from './components/Tag'
+import Footer from './components/Footer'
+
 import { GiTortoise } from "react-icons/gi"
 import { GiRabbit } from "react-icons/gi";
-import {motion, AnimatePresence} from "framer-motion"
-import Footer from './components/Footer'
 import { FaGithub } from "react-icons/fa";
 import { FaInfo } from "react-icons/fa";
 import { BsAlphabetUppercase } from "react-icons/bs";
@@ -14,10 +16,29 @@ import { GrCircleInformation } from "react-icons/gr";
 import { BiBug } from "react-icons/bi";
 import { FaHome } from "react-icons/fa";
 import { BsHouse } from "react-icons/bs";
-import Tag from './components/Tag'
+import { TbAlphabetLatin } from "react-icons/tb";
+import { TbAlphabetGreek } from "react-icons/tb";
+import { optionVariant } from './variables/_variables'
+
 
 function App() {
-  const alphabet = ["A", "B", "C" ,"D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
+  const latin = ["A", "B", "C" ,"D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
+  // const latin = ["a", "b", "c" ,"d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]
+  const greek = ['Α', 'Β', 'Γ', 'Δ', 'Ε', 'Ζ', 'Η', 'Θ', 'Ι', 'Κ', 'Λ', 'Μ', 'Ν', 'Ξ', 'Ο', 'Π', 'Ρ', 'Σ', 'Τ', 'Υ', 'Φ', 'Χ', 'Ψ', 'Ω']
+
+  
+  // const greek = ["α", "β","γ", "δ", "ε", "ζ", "η", "θ", "ϑ", "ι", "κ", "λ", "μ", "ν" ,"ξ" ,"ο", "π","ϖ", "ρ", "ς", "σ", "τ", "υ", "φ", "χ", "ψ", "ω"]
+  
+
+
+  const [alphabet, setAlphabet] = useState({
+    type : latin,
+    name : "latin"
+  })
+
+
+  const [selected, setSelected] = useState(false)
+  const [done, setDone] = useState(false)
   const [mapped, setMapped] = useState([])
   const [input, setInput] = useState("")
   const [isClicked, setIsClicked] = useState(false)
@@ -25,28 +46,31 @@ function App() {
   const [step, setStep] = useState(0)
   const [output, setOutput] = useState("")
   const [offset, setOffset] = useState(0)
+  const [selectedOption, setSelectedOption] = useState(350)
   const [hovered, setHovered] = useState({
     status : false,
     item : ""
   })
-  const [selectedOption, setSelectedOption] = useState(350)
   const [alphaOne, setAlphaOne] = useState({
     index : 0,
     char : ""
   })
-
   const [alphaTwo, setAlphaTwo] = useState({
     index : 0,
     char : ""
   })
 
-  console.log(screen.width)
+  // console.log(screen.width)
 
   // Handles the option input values
   const handleOptionChange = (e) => {
     setSelectedOption(e.target.value)
   }
 
+  //Update Done status
+  const updateDone = (value) => {
+    setDone(value)
+  }
 
   // Update the current letter in input 
   const updateInput = (idx, c) => {
@@ -82,9 +106,9 @@ function App() {
   // Handles the submit event
   const handleSubmit = (e) => {
     e.preventDefault()
-    setMapped(shift(alphabet, step))
-    setOutput(caesarCipher(input, step))
     setIsClicked(true)
+    setMapped(shift(alphabet.type, step))
+    setOutput(caesarCipher(input, step, alphabet.name))
   }
 
   // Handles the hover in event
@@ -101,15 +125,33 @@ function App() {
     setHovered(false)
   }
 
+  // Calculates the shifting step
+  const stepCalculator = (step) => {
+    const result = Math.round(step * (1 / alphabet.type.length * 50) * 1000) / 1000
+    return result
+  }
+
   useEffect(() => {
     setOffset((prev) => prev + 0.5)
   }, [step, isClicked])
 
-  // Calculates the shifting step
-  const stepCalculator = (step) => {
-    const result = Math.round(step * (1 / 26 * 50) * 1000) / 1000
-    return result
-  }
+  useEffect(() => {
+    setExtended(alphabet)
+  }, [alphabet])
+
+  const toggleRef = useRef(null)
+  useEffect(() => {
+    const handleClickOutside = (e) => {
+      if(toggleRef.current && !toggleRef.current.contains(e.target)){
+        setSelected(false)
+      }
+    } 
+    document.addEventListener('mousedown', handleClickOutside)
+    
+    return () => {
+      document.addEventListener('mousedown', handleClickOutside)
+    }
+  }, [])
 
   
   return (
@@ -121,15 +163,33 @@ function App() {
         <div className='sidebar-elements'  onMouseEnter={handleHoverIn} onMouseLeave={handleHoverOut}>
           <GrCircleInformation className='icon'></GrCircleInformation>
         </div>
-        <div className='sidebar-elements' id = 'alphabets' onMouseEnter={handleHoverIn} onMouseLeave={handleHoverOut}>
-          <BsAlphabetUppercase className='icon'></BsAlphabetUppercase>
+        <div className='sidebar-elements' id = 'alphabets' onClick={() => setSelected(!selected)}>
+          {
+            alphabet.name === 'latin' 
+            ? <TbAlphabetLatin className='icon alphabet'></TbAlphabetLatin>
+            : <TbAlphabetGreek className='icon alphabet'></TbAlphabetGreek>
+          }
+          {/* <BsAlphabetUppercase className='icon'></BsAlphabetUppercase> */}
+          {
+            selected &&
+            <motion.div key ='option' variants={optionVariant} initial="initial" animate='visible' exit='exit' className='alphabet-options' ref={toggleRef}>
+              <div className={alphabet.name === 'latin' ? 'option selected' : 'option'} onClick={() => setAlphabet({type : latin, name : 'latin'})}>
+                <TbAlphabetLatin className='option-icon'></TbAlphabetLatin>
+                <h1>Latin</h1>
+              </div>
+              <div className={alphabet.name === 'greek' ? 'option selected' : 'option'} onClick={() => setAlphabet({type : greek, name : 'greek'})}>
+                <TbAlphabetGreek className='option-icon'></TbAlphabetGreek>
+                <h1>Ancient Greek</h1>
+              </div>
+            </motion.div>
+          }
         </div>
-        <div className='sidebar-elements' onMouseEnter={handleHoverIn} onMouseLeave={handleHoverOut}>
+        <a href='https://github.com/bachvo01/Caesar-Cipher/issues' target='_blank' rel="noreferrer noopener" className='sidebar-elements' onMouseEnter={handleHoverIn} onMouseLeave={handleHoverOut}>
           <BiBug className='icon'></BiBug>
-        </div>
-        <div className='sidebar-elements' onMouseEnter={handleHoverIn} onMouseLeave={handleHoverOut}>
+        </a>
+        <a href='https://github.com/bachvo01/Caesar-Cipher' target='_blank' rel="noreferrer noopener" className='sidebar-elements' onMouseEnter={handleHoverIn} onMouseLeave={handleHoverOut}>
           <FaGithub className='icon'></FaGithub>
-        </div>
+        </a>
       </div>
       <div className='main-inner'>
         <div className='cipher-container'>
@@ -141,7 +201,7 @@ function App() {
             <div className='alphabet-container'>
               <div className='row'>
               {
-                alphabet.map((letter, index) => {
+                alphabet.type.map((letter, index) => {
                   if(letter === alphaOne.char.toUpperCase()){
                     return(
                       <span key={index} className='letter highlighted'>{letter}</span>
@@ -170,7 +230,7 @@ function App() {
                     animate={{opacity : 1, transform : `translateX(-${stepCalculator(step)}%) translateX(${0}px)`}}
                     transition={{duration: 0.35, type : "just", stiffness : 150}}>
                       {
-                          extended.map((letter, index) => {
+                          extended.type.map((letter, index) => {
                             if(letter === alphaOne.char.toUpperCase()){
                               return(
                                 <span key={index} className='letter highlighted'>{letter}</span>
@@ -184,7 +244,7 @@ function App() {
                           })
                         }
                       {
-                          extended.map((letter, index) => {
+                          extended.type.map((letter, index) => {
                             if(letter === alphaOne.char.toUpperCase()){
                               return(
                                 <span key={index} className='letter highlighted'>{letter}</span>
@@ -229,7 +289,7 @@ function App() {
                     isClicked === false && <textarea id = 'text-input' type='textarea' onChange={(e) => {setInput(e.target.value)}} value={input}></textarea>
                   }                    
                   {
-                    isClicked && <Highlighter string = {input} speed ={selectedOption} updateClicked = {updateClicked} updateComparison = {updateInput}></Highlighter>
+                    isClicked && <Highlighter string = {input} speed ={selectedOption} updateClicked = {updateClicked} updateComparison = {updateInput} updateDone = {updateDone}></Highlighter>
                   }
      
                 </div>
@@ -244,7 +304,7 @@ function App() {
                 </div>
               </div>
               <div className='output-container'>
-                  <div className='column two'>
+                  <div className={input.length === 0 ? 'column two disabled' : 'column two'}>
                     <label>Encryption speed:</label>
                     <div className='option-container'>
                       <div className='turtle'>
@@ -277,14 +337,14 @@ function App() {
                       </div>
                     </div>
                   </div>
-                  <div className='column one'>
+                  <div className={input.length === 0 ? 'column one disabled' : 'column one'}>
                     <label htmlFor = 'shift'>Shift step:</label>
-                    <input type='number' min="0" max="26" id='shift' onChange={(e) => {setStep(e.target.value)}} value={step}></input>
+                    <input type='number' min="0" max={alphabet.type.length} disabled = {isClicked ? true : false} id='shift' onChange={(e) => {setStep(e.target.value)}} value={step}></input>
                   </div>
               </div>
               
               <div className='button-wrapper'>
-                <button type='submit'>Encrypt</button>
+                <button type='submit' className={input.length === 0 || isClicked ? 'submit-button disabled' : 'submit-button'} disabled = {isClicked ? true : false}>Encrypt</button>
                 <button type='reset' className='reset-button' onClick={handleReset}>Reset</button>
               </div>       
             </form>

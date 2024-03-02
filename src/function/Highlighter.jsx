@@ -3,9 +3,11 @@ import { useState, useEffect } from 'react'
 
 function Highlighter(props) {
     const input = props.string
+    // console.log(input)
     const speed = props.speed
     const updateClicked = props.updateClicked
     const updateComparison = props.updateComparison
+
     // console.log(string)
 
     // Highlighted index
@@ -19,7 +21,7 @@ function Highlighter(props) {
 
     const [char, setChar] = useState("")
 
-    const [done, setDone] = useState(false)
+
     useEffect(() => {
       const timer = setInterval(() => {
         setPrevIdx(currentIdx)
@@ -45,6 +47,9 @@ function Highlighter(props) {
         <p className='para'>
           {
             input.split("").map((char, index) => {
+              {/* if(index === input.length - 1 && updateClicked){
+                updateClicked(false)
+              } */}
               return(
                 <span key={index} className={index === currentIdx ? "highlight" : ""} style={index === prevIdx ? { backgroundColor: "transparent"} : null}>{char}</span>
               )

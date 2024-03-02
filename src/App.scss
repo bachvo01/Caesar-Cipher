@@ -93,7 +93,85 @@ textarea{
 
 		.sidebar-elements{
 			position: relative;
+			cursor: pointer;
+				.icon{
+					font-size: 20px;
+					color: #555;
+					transition: 0.3s ease;
 
+					&.alphabet{
+						font-size: 25px;
+					}
+				}
+
+				&.selected{
+					border-radius: 20%;
+					border: 1px solid #555;
+					padding: 7px;
+					.icon{
+						color: #cbcbcb
+					}
+				}
+			
+			&:hover{
+				.icon{
+					color: #eee;
+					transition: 0.3s ease;
+				}
+			}
+			// width: 100%;
+			.alphabet-options{
+				position: absolute;
+				width: max-content;
+				left: 45px;
+				top: 0;
+				display: flex;
+				flex-direction: column;
+				justify-content: center;
+				// align-items: center;
+				padding: 10px 12px 10px 12px;
+				background-color: #111;
+				border-radius: 0.3rem;
+				row-gap: 8px;
+				// border: 1px solid #555;
+				.option{
+					display: flex;
+					// justify-content: center;
+					align-items: center;
+					column-gap: 5px;
+					
+					&.selected{
+						.option-icon{
+							color: #eee;
+						}
+						h1{
+							color: #eee;
+						}
+					}
+					h1{
+						font-family: "SpaceMonoReg";
+						font-size: 0.9vw;
+						color: #555;
+						transition: 0.3s ease;
+					}
+
+					.option-icon{
+						color: #555;
+						transition: 0.3s ease;
+						font-size: 20px;
+					}
+
+					&:hover{
+						transition: 0.3s ease;
+						h1{
+							color: #eee;
+						}
+						.option-icon{
+							color: #eee;
+						}
+					}
+				}
+			}
 		}
 	}
 	.main-inner{
@@ -241,8 +319,8 @@ textarea{
 							margin-bottom: 30px;
 
 							.input-highlight-container{
-								min-height: 150px;
-								max-height: 200px;
+								// min-height: 150px;
+								// max-height: 200px;
 								width: 100%;
 								border: 0.5px solid #555;
 								border-radius: 0.2rem;
@@ -255,7 +333,7 @@ textarea{
 									width: 1em;
 								}
 								p{
-									white-space: nowrap;
+									white-space: wrap;
 								}
 
 								.para{
@@ -356,6 +434,7 @@ textarea{
 							&.one{
 								// width: max-content;
 								width: 50%;
+								transition: 0.3s ease;
 								input{
 									width:  25%;
 									height: 25px;
@@ -368,12 +447,23 @@ textarea{
 									padding-bottom: 5px;
 									padding-left: 10px;
 								}
+
+								&.disabled{
+									opacity: 0.5;
+									pointer-events: none;
+									transition: 0.3s ease;
+								}
 							}
 
 							&.two{
 								display: flex;
 								width: 50%;
-
+								transition: 0.3s ease;
+								&.disabled{
+									opacity: 0.5;
+									pointer-events: none;
+									transition: 0.3s ease;
+								}
 								.option-container{
 									display: flex;
 									align-items: center;
@@ -445,6 +535,16 @@ textarea{
 							background-color: #cbcbcb;
 							color: #222;
 						}
+
+						.submit-button{
+							transition: 0.3s ease;
+							&.disabled{
+								opacity: 0.5;
+								user-select: none;
+								cursor: not-allowed;
+								transition: 0.3s ease;
+							}
+						}
 					}
 				}
 			}
@@ -504,7 +604,7 @@ textarea{
 					.mapped-container{
 						font-size: 1.06vw;
 					}
-
+		
 					.form-container{
 						.input-container{
 							row-gap: 1.003vw;
@@ -514,13 +614,14 @@ textarea{
 								margin-bottom: calc(1.003vw * 2);
 
 								.input-highlight-container{
-									min-height: calc(10vh * 2);
-									max-height: calc(13vh * 2);
+									height: calc(13vh * 2);
+									// min-height: calc(10vh * 2);
+									// max-height: calc(13vh * 2);
 									font-size: 0.9vw;
 	
 									.para{
 										color: #cbcbcb;
-										text-wrap: wrap;
+										// text-wrap: wrap;
 										padding-top: 10px;
 										padding-bottom: 10px;
 										padding-left: 10px;
@@ -544,8 +645,9 @@ textarea{
 							
 
 							textarea{
-								min-height: calc(10vh * 2);
-								max-height: calc(13vh * 2);
+								height: calc(13vh * 2);
+								// min-height: calc(10vh * 2);
+								// max-height: calc(13vh * 2);
 								font-size: 0.9vw;
 							}
 						}
