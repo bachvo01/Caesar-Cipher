@@ -145,7 +145,7 @@ function App() {
     setTimeout(() => {
       setEntered(false)
       letter.classList.remove("clicked")
-    }, 2000)
+    }, 300)
   }  
 
 
