@@ -86,11 +86,11 @@ textarea{
 		width: 60px;
 		display: flex;
 		flex-direction: column;
-		border-right: 1px solid #55555570;
+		// border-right: 1px solid #55555570;
 		// row-gap: ;
 		justify-content: center;
 		align-items: center;
-
+		box-shadow: 0px 0px 30px 10px rgb(19 19 19 / 45%);
 		.sidebar-elements{
 			position: relative;
 			cursor: pointer;
@@ -109,7 +109,7 @@ textarea{
 					border: 1px solid #555;
 					padding: 7px;
 					.icon{
-						color: #cbcbcb
+						color: #cbcbcb;
 					}
 				}
 			
@@ -179,10 +179,12 @@ textarea{
 		display: flex;
 		flex-direction: column;
 		margin-top: 60px;
+		margin-left: 4em;
+		margin-right: 4em;
 		.cipher-container{
 			display: flex;
 			width: 100%;
-			column-gap: 8vw;
+			column-gap: 6em;
 
 			.fact-container{
 				width: 40%;
@@ -231,7 +233,16 @@ textarea{
 							font-size: 1vw;
 							vertical-align: middle;
 							text-align: center;
+							cursor: pointer;
+							transition: 0.3s ease;
+							&:hover{
+								background-color: #555;
+								transition: 0.3s ease;
+							}
 
+							&.clicked{
+								animation: bounce 0.2s ease-in-out 1;
+							}
 							// padding: 1px;
 							// border-right: 1px solid #cbcbcb;
 							// border-top: 1px solid #cbcbcb;
@@ -560,6 +571,15 @@ textarea{
 	}
 }
 
+@keyframes bounce {
+	to {
+	  transform: translateY(-1em);
+	  font-weight: 1000;
+	  color: #5625b1;
+	  background: #fff;
+	}
+  }
+
 /* Extra large screens */
 @media only screen and (min-width: 1440px) and (max-width: 2559px) {
 	.main-container{
@@ -589,8 +609,8 @@ textarea{
 			width: calc(100% - 60px);
 			// width: calc(100% - 16.043vw);
 			margin-top: 4.011vw;
-			padding-right: 60px;
-			padding-left: 60px;
+			// padding-right: 60px;
+			// padding-left: 60px;
 			.cipher-container{
 
 				.fact-container{

@@ -46,7 +46,6 @@ function App() {
   const [extended, setExtended] = useState(isClicked === false ? alphabet : [])
   const [step, setStep] = useState(0)
   const [output, setOutput] = useState("")
-  const [offset, setOffset] = useState(0)
   const [selectedOption, setSelectedOption] = useState(350)
   const [hovered, setHovered] = useState({
     status : false,
@@ -133,9 +132,22 @@ function App() {
     return result
   }
 
-  useEffect(() => {
-    setOffset((prev) => prev + 0.5)
-  }, [step, isClicked])
+  // Handles letters' onClick event
+  const [entered, setEntered] = useState(false)
+
+  const handleClickLetter = (e) => {
+    let letter = document.getElementById(e.target.id)
+    console.log(letter.textContent)
+    setInput(prevInput => prevInput + letter.textContent)
+    letter.setAttribute("class", "letter clicked")
+    setEntered(true)
+    // setInput()
+    setTimeout(() => {
+      setEntered(false)
+      letter.classList.remove("clicked")
+    }, 2000)
+  }  
+
 
   useEffect(() => {
     setExtended(alphabet)
@@ -154,6 +166,7 @@ function App() {
       document.addEventListener('mousedown', handleClickOutside)
     }
   }, [])
+
 
   
   return (
@@ -210,7 +223,7 @@ function App() {
                   }
                   else{
                     return(
-                      <span key={index} className='letter'>{letter}</span>
+                      <span key={index} id ={"letter-" + index} className='letter' onClick={handleClickLetter}>{letter}</span>
                     )
                   }
                   
