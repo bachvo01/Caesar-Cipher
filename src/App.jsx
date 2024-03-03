@@ -160,9 +160,9 @@ function App() {
         <div className='sidebar-elements selected' onMouseEnter={handleHoverIn} onMouseLeave={handleHoverOut}>
           <BsHouse className='icon'></BsHouse>
         </div>
-        <div className='sidebar-elements'  onMouseEnter={handleHoverIn} onMouseLeave={handleHoverOut}>
+        {/* <div className='sidebar-elements'  onMouseEnter={handleHoverIn} onMouseLeave={handleHoverOut}>
           <GrCircleInformation className='icon'></GrCircleInformation>
-        </div>
+        </div> */}
         <div className='sidebar-elements' id = 'alphabets' onClick={() => setSelected(!selected)}>
           {
             alphabet.name === 'latin' 
@@ -350,8 +350,9 @@ function App() {
             </form>
           </div>
         </div>
+        <Footer></Footer>
       </div>
-      {/* <Footer></Footer> */}
+      
     </div>
   )
 }
