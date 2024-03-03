@@ -530,7 +530,7 @@ textarea{
 						display: flex;
 						margin-top: 30px;
 						column-gap: 15px;
-
+						align-items: center;
 						.reset-button{
 							background-color: #cbcbcb;
 							color: #222;
@@ -543,6 +543,14 @@ textarea{
 								user-select: none;
 								cursor: not-allowed;
 								transition: 0.3s ease;
+							}
+						}
+
+						.message-container{
+							margin-left: 15px;
+							.para{
+								font-family: "SpaceMonoReg";
+								font-size: 14px;
 							}
 						}
 					}

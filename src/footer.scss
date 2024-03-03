@@ -35,11 +35,12 @@
 
     position: fixed;
     bottom: 0;
+    left: 60px;
     height: 0px;
     width: 100%;
     background-color: #222;
     padding-top: 0px;
-    animation: down 1.33s ease-in-out 1;
+    animation: down 1.2s ease-in-out 1;
 }
 
 @keyframes down {

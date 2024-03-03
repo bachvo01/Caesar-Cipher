@@ -26,7 +26,7 @@ function Typewriter({ text, speed }) {
       }, [currentIdx, text]);
 
   return (
-    <div className='input-highlight-container'>
+    <div className='message-container'>
         <p className='para'>
           {
             current.split("").map((char, index) => {

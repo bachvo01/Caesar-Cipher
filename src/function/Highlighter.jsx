@@ -1,14 +1,14 @@
 import React from 'react'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 
 function Highlighter(props) {
     const input = props.string
-    // console.log(input)
     const speed = props.speed
-    const updateClicked = props.updateClicked
     const updateComparison = props.updateComparison
+    const updateDone = props.updateDone
+    const updateClicked = props.updateClicked
 
-    // console.log(string)
+
 
     // Highlighted index
     const [highlighted, setHighlighted] = useState(0)
@@ -19,41 +19,36 @@ function Highlighter(props) {
     // Current Index
     const [currentIdx, setCurrentIdx] = useState(-1)
 
-    const [char, setChar] = useState("")
-
-
+    const [status, setStatus] = useState(false)
     useEffect(() => {
       const timer = setInterval(() => {
         setPrevIdx(currentIdx)
         setCurrentIdx(prevIndex => {
+          // console.log(prevIndex + " " + input.length)
           updateComparison(prevIndex + 1, input.charAt(prevIndex + 1))
-          if(prevIndex === input.length){
-            return
+          if(prevIndex === input.length - 1 && updateDone){
+            updateDone(true)
+            // updateClicked(false)
+            // return
           }
           return prevIndex < input.length - 1 ? prevIndex + 1 : prevIndex
         })
       }, speed)
 
       return () => {
-        
         clearInterval(timer)
       }
     }, [input, speed, currentIdx])
     
-    // console.log(highlighted)
     
     return (
-      <div className='input-highlight-container'>
-        <p className='para'>
+      <div className='input-highlight-container' >
+        <p className='para' id='input'>
           {
             input.split("").map((char, index) => {
-              {/* if(index === input.length - 1 && updateClicked){
-                updateClicked(false)
-              } */}
               return(
                 <span key={index} className={index === currentIdx ? "highlight" : ""} style={index === prevIdx ? { backgroundColor: "transparent"} : null}>{char}</span>
               )
-              
             })
           }
         </p>

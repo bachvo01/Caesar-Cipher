@@ -19,6 +19,7 @@ import { BsHouse } from "react-icons/bs";
 import { TbAlphabetLatin } from "react-icons/tb";
 import { TbAlphabetGreek } from "react-icons/tb";
 import { optionVariant } from './variables/_variables'
+import Typewriter from './function/Typewriter'
 
 
 function App() {
@@ -100,6 +101,7 @@ function App() {
     setOutput("")
     setIsClicked(false)
     setExtended(alphabet)
+    setDone(false)
     setStep(0)
   }
 
@@ -169,7 +171,6 @@ function App() {
             ? <TbAlphabetLatin className='icon alphabet'></TbAlphabetLatin>
             : <TbAlphabetGreek className='icon alphabet'></TbAlphabetGreek>
           }
-          {/* <BsAlphabetUppercase className='icon'></BsAlphabetUppercase> */}
           {
             selected &&
             <motion.div key ='option' variants={optionVariant} initial="initial" animate='visible' exit='exit' className='alphabet-options' ref={toggleRef}>
@@ -299,7 +300,7 @@ function App() {
                     isClicked === false && <textarea id='text-area' name='textarea' disabled value={output} onChange={e => setOutput(e.target.value)}>{output}</textarea>
                   }
                   {
-                    output && <Highlighter string = {output} speed ={selectedOption} updateClicked = {updateClicked} updateComparison = {updateOutput}></Highlighter>
+                    output && isClicked && <Highlighter string = {output} speed ={selectedOption} updateClicked = {updateClicked} updateComparison = {updateOutput} updateDone = {updateDone}></Highlighter>
                   }
                 </div>
               </div>
@@ -346,13 +347,15 @@ function App() {
               <div className='button-wrapper'>
                 <button type='submit' className={input.length === 0 || isClicked ? 'submit-button disabled' : 'submit-button'} disabled = {isClicked ? true : false}>Encrypt</button>
                 <button type='reset' className='reset-button' onClick={handleReset}>Reset</button>
+                {
+                  done && <Typewriter text="Want to try again? Hit reset!" speed={80}></Typewriter>
+                }
               </div>       
             </form>
           </div>
         </div>
-        <Footer></Footer>
       </div>
-      
+      <Footer></Footer>
     </div>
   )
 }
