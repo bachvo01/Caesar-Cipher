@@ -28,6 +28,7 @@ function Highlighter(props) {
           updateComparison(prevIndex + 1, input.charAt(prevIndex + 1))
           if(prevIndex === input.length - 1 && updateDone){
             updateDone(true)
+            console.log(prevIdx)
             // updateClicked(false)
             // return
           }
@@ -46,6 +47,11 @@ function Highlighter(props) {
         <p className='para' id='input'>
           {
             input.split("").map((char, index) => {
+              if(prevIdx + 1 === input.length){
+                return (
+                  <span key={index} className={""}>{char}</span>
+                )
+              }
               return(
                 <span key={index} className={index === currentIdx ? "highlight" : ""} style={index === prevIdx ? { backgroundColor: "transparent"} : null}>{char}</span>
               )
