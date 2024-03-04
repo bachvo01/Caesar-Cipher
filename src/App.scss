@@ -234,7 +234,7 @@ textarea{
 							vertical-align: middle;
 							text-align: center;
 							cursor: pointer;
-							transition: 0.3s ease;
+							// transition: 0.3s ease;
 							&:hover{
 								background-color: #555;
 								transition: 0.3s ease;
@@ -288,7 +288,7 @@ textarea{
 									vertical-align: middle;
 									text-align: center;
 									color: #555;
-			
+									// transition: 0.3s ease;
 									&.highlighted{
 										background-color: #cbcbcb;
 										color : #222;

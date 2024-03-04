@@ -19,6 +19,7 @@ import { BsHouse } from "react-icons/bs";
 import { TbAlphabetLatin } from "react-icons/tb";
 import { TbAlphabetGreek } from "react-icons/tb";
 import { optionVariant } from './variables/_variables'
+import { style } from './variables/_variables'
 import Typewriter from './function/Typewriter'
 
 

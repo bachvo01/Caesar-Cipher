@@ -15,3 +15,8 @@ export const optionVariant = {
         opacity : 0
     }
 }
+
+
+export const style = {
+    transition : "none"
+}
