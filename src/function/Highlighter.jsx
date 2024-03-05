@@ -1,5 +1,4 @@
-import React from 'react'
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect } from 'react'
 
 function Highlighter(props) {
     const input = props.string
@@ -28,7 +27,8 @@ function Highlighter(props) {
           updateComparison(prevIndex + 1, input.charAt(prevIndex + 1))
           if(prevIndex === input.length - 1 && updateDone){
             updateDone(true)
-            console.log(prevIdx)
+            // updateClicked(false)
+            // console.log(prevIdx)
             // updateClicked(false)
             // return
           }

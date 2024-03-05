@@ -216,10 +216,9 @@ textarea{
 					box-sizing: border-box;
 					border-collapse: collapse;
 					margin-bottom: 30px;
-
+					
 					.row{
 						display: table-row;
-
 						.letter{
 							display: table-cell;
 							justify-content: center;
@@ -234,6 +233,7 @@ textarea{
 							vertical-align: middle;
 							text-align: center;
 							cursor: pointer;
+
 							// transition: 0.3s ease;
 							&:hover{
 								background-color: #555;
@@ -243,11 +243,6 @@ textarea{
 							&.clicked{
 								animation: bounce 0.2s ease-in-out 1;
 							}
-							// padding: 1px;
-							// border-right: 1px solid #cbcbcb;
-							// border-top: 1px solid #cbcbcb;
-							// border-bottom: 1px solid #cbcbcb;
-							// padding: 10px;
 	
 							&.highlighted{
 								background-color: #cbcbcb;
@@ -321,7 +316,7 @@ textarea{
 						grid-template-columns: repeat(2, 1fr);
 						width: 100%;
 						column-gap: 1.003vw;
-						
+						min-height: 30vh;
 						.row{
 							display: flex;
 							flex-direction: column;
@@ -332,6 +327,7 @@ textarea{
 							.input-highlight-container{
 								// min-height: 150px;
 								// max-height: 200px;
+								height: 100%;
 								width: 100%;
 								border: 0.5px solid #555;
 								border-radius: 0.2rem;
@@ -344,18 +340,21 @@ textarea{
 									width: 1em;
 								}
 								p{
-									white-space: wrap;
+									// white-space: wrap;
 								}
+
+								
 
 								.para{
 									color: #cbcbcb;
 									text-wrap: wrap;
 									padding-top: 10px;
-									padding-bottom: 10px;
+									// padding-bottom: 10px;
 									padding-left: 10px;
 									padding-right: 10px;
 									line-height: 1.3;
-									
+									display: block;
+									height: 100%;
 								}
 								// padding-top: 10px;
 								// padding-bottom: 5px;
@@ -389,6 +388,7 @@ textarea{
 							textarea{
 								// height: 25px;
 								// width: 50%;
+								height: 100%;
 								border: 0.5px solid #555;
 								border-radius: 0.2rem;
 								background-color: transparent;
@@ -397,12 +397,6 @@ textarea{
 								padding-bottom: 5px;
 								padding-left: 10px;
 								resize: none;
-							}
-							
-							&.two{
-								textarea{
-									
-								}
 							}
 						}
 					}
@@ -636,13 +630,12 @@ textarea{
 					.form-container{
 						.input-container{
 							row-gap: 1.003vw;
-
 							.row{
 								row-gap: 1.003vw;
-								margin-bottom: calc(1.003vw * 2);
+								// margin-bottom: calc(1.003vw * 2);
 
 								.input-highlight-container{
-									height: calc(13vh * 2);
+									// height: calc(13vh * 2);
 									// min-height: calc(10vh * 2);
 									// max-height: calc(13vh * 2);
 									font-size: 0.9vw;
@@ -655,7 +648,8 @@ textarea{
 										padding-left: 10px;
 										padding-right: 10px;
 										line-height: 1.3;
-										
+										display: inline-block;
+										height: 100%;
 									}
 									
 									.highlight{
@@ -673,7 +667,7 @@ textarea{
 							
 
 							textarea{
-								height: calc(13vh * 2);
+								// height: calc(13vh * 2);
 								// min-height: calc(10vh * 2);
 								// max-height: calc(13vh * 2);
 								font-size: 0.9vw;

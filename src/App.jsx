@@ -38,7 +38,7 @@ function App() {
     name : "latin"
   })
 
-
+  const [isReseted, setIsReseted] = useState(false)
   const [selected, setSelected] = useState(false)
   const [done, setDone] = useState(false)
   const [mapped, setMapped] = useState([])
@@ -48,6 +48,7 @@ function App() {
   const [step, setStep] = useState(0)
   const [output, setOutput] = useState("")
   const [selectedOption, setSelectedOption] = useState(350)
+  const [prevInput, setPrevInput] = useState("")
   const [hovered, setHovered] = useState({
     status : false,
     item : ""
@@ -71,6 +72,11 @@ function App() {
   //Update Done status
   const updateDone = (value) => {
     setDone(value)
+  }
+
+  //Update Reset status
+  const updateReset = (value) => {
+    setReset(value)
   }
 
   // Update the current letter in input 
@@ -111,6 +117,8 @@ function App() {
     setIsClicked(true)
     setMapped(shift(alphabet.type, step))
     setOutput(caesarCipher(input, step, alphabet.name))
+    setPrevInput(input)
+    setDone(false)
   }
 
   // Handles the hover in event
@@ -150,6 +158,7 @@ function App() {
   }  
 
 
+
   useEffect(() => {
     setExtended(alphabet)
   }, [alphabet])
@@ -169,6 +178,12 @@ function App() {
   }, [])
 
 
+  useEffect(() => {
+    if(input !== prevInput && done){
+      setIsClicked(false)
+    }
+  }, [input, prevInput, done])
+
   
   return (
     <div className='main-container'>
@@ -176,9 +191,6 @@ function App() {
         <div className='sidebar-elements selected' onMouseEnter={handleHoverIn} onMouseLeave={handleHoverOut}>
           <BsHouse className='icon'></BsHouse>
         </div>
-        {/* <div className='sidebar-elements'  onMouseEnter={handleHoverIn} onMouseLeave={handleHoverOut}>
-          <GrCircleInformation className='icon'></GrCircleInformation>
-        </div> */}
         <div className='sidebar-elements' id = 'alphabets' onClick={() => setSelected(!selected)}>
           {
             alphabet.name === 'latin' 
@@ -237,12 +249,15 @@ function App() {
             <div className='mapped-outer'>
                 <div className='mapped-container' style={isClicked ? {width : '100%'} : {width : '200%'}}>
                 {
-                  isClicked === false ?
+                    isClicked === false ?
                     <motion.div key='shift'
                     className='mapped-inner'
                     initial = {{opacity : 0}} exit= {{opacity : 0}} 
                     // style={{width : `calc(100% + ${calculator(step)}%)`, gridTemplateColumns : `repeat(${parseInt(length) + parseInt(step)}, 1fr)`}}
-                    animate={{opacity : 1, transform : `translateX(-${stepCalculator(step)}%) translateX(${0}px)`}}
+                    animate={ done === false ?
+                      {opacity : 1, transform : `translateX(-${stepCalculator(step)}%) translateX(${0}px)`} :
+                      {opacity : 1}
+                    }
                     transition={{duration: 0.35, type : "just", stiffness : 150}}>
                       {
                           extended.type.map((letter, index) => {
@@ -301,11 +316,9 @@ function App() {
                 <div className='row one'>
                   <label htmlFor = 'text-input'>Input text:</label>
                   {
-                    isClicked === false && <textarea id = 'text-input' type='textarea' onChange={(e) => {setInput(e.target.value)}} value={input}></textarea>
+                    isClicked === false || done ? <textarea id = 'text-input' type='textarea' style={done ? {color : "#cbcbcb"} : null} onChange={(e) => {setInput(e.target.value)}} value={input}></textarea> 
+                    : <Highlighter string = {input} speed ={selectedOption} updateClicked = {updateClicked} updateComparison = {updateInput} updateDone = {updateDone}></Highlighter>
                   }                    
-                  {
-                    isClicked && <Highlighter string = {input} speed ={selectedOption} updateClicked = {updateClicked} updateComparison = {updateInput} updateDone = {updateDone}></Highlighter>
-                  }
      
                 </div>
                 <div className='row two'>
@@ -359,7 +372,7 @@ function App() {
               </div>
               
               <div className='button-wrapper'>
-                <button type='submit' className={input.length === 0 || isClicked ? 'submit-button disabled' : 'submit-button'} disabled = {isClicked ? true : false}>Encrypt</button>
+                <button type='submit' className={input.length === 0 ? 'submit-button disabled' : 'submit-button'} disabled = {input === prevInput ? true : false}>Encrypt</button>
                 <button type='reset' className='reset-button' onClick={handleReset}>Reset</button>
                 {
                   done && <Typewriter text="Want to try again? Hit reset!" speed={80}></Typewriter>
