@@ -133,6 +133,7 @@ textarea{
 				background-color: #111;
 				border-radius: 0.3rem;
 				row-gap: 8px;
+				box-shadow: 5px 5px 5px 5px rgb(19 19 19 / 50%);
 				// border: 1px solid #555;
 				.option{
 					display: flex;
@@ -149,8 +150,8 @@ textarea{
 						}
 					}
 					h1{
-						font-family: "SpaceMonoReg";
-						font-size: 0.8vw;
+						font-family: monospace;
+						font-size: 1vw;
 						color: #555;
 						transition: 0.3s ease;
 					}
@@ -158,7 +159,7 @@ textarea{
 					.option-icon{
 						color: #555;
 						transition: 0.3s ease;
-						font-size: 20px;
+						font-size: 1.3vw;
 					}
 
 					&:hover{
@@ -192,14 +193,15 @@ textarea{
 				flex-direction: column;
 				
 				.name{
-					font-family: "SpaceMonoBold";
+					font-family: monospace;
+					font-weight: bolder;
 					font-size: 1.6vw;
 					color: #eee;
 					margin-bottom: 30px;
 				}
 
 				.para{
-					font-family: "SpaceMonoReg";
+					font-family: monospace;
 					font-size: 0.936vw;
 					line-height: 1.5;
 					color: #cbcbcb;
@@ -225,7 +227,7 @@ textarea{
 							align-items: center;
 							height: 2em;
 							width: 2em;
-							font-family: "SpaceMonoReg";
+							font-family: monospace;
 							border: 1px solid #555;
 							padding-top: 5px;
 							padding-bottom: 5px;
@@ -275,7 +277,7 @@ textarea{
 									align-items: center;
 									height: 2em;
 									width: 2em;
-									font-family: "SpaceMonoReg";
+									font-family: monospace;
 									border: 1px solid #555;
 									padding-top: 5px;
 									padding-bottom: 5px;
@@ -333,7 +335,7 @@ textarea{
 								border-radius: 0.2rem;
 								font-size: 14px;
 								background-color: transparent;
-								font-family: "SpaceMonoReg";
+								font-family: monospace;
 								overflow: scroll;
 								overflow-x: hidden;
 								&::-webkit-scrollbar {
@@ -370,7 +372,7 @@ textarea{
 							}
 
 							label{
-								font-family: "SpaceMonoReg";
+								font-family: monospace;
 								font-size: 14px;
 							}
 	
@@ -380,7 +382,7 @@ textarea{
 								border: 0.5px dashed #555;
 								border-radius: 0.2rem;
 								background-color: transparent;
-								font-family: "SpaceMonoReg";
+								font-family: monospace;
 								padding-top: 5px;
 								padding-bottom: 5px;
 								padding-left: 10px;
@@ -392,7 +394,7 @@ textarea{
 								border: 0.5px solid #555;
 								border-radius: 0.2rem;
 								background-color: transparent;
-								font-family: "SpaceMonoReg";
+								font-family: monospace;
 								padding-top: 10px;
 								padding-bottom: 5px;
 								padding-left: 10px;
@@ -447,7 +449,7 @@ textarea{
 									border: 0.5px solid #555;
 									border-radius: 0.2rem;
 									background-color: transparent;
-									font-family: "SpaceMonoReg";
+									font-family: monospace;
 									padding-top: 5px;
 									padding-bottom: 5px;
 									padding-left: 10px;
@@ -512,7 +514,7 @@ textarea{
 						// width: 30rem;
 						margin-bottom: 30px;
 						label{
-							font-family: "SpaceMonoReg";
+							font-family: monospace;
 							font-size: 14px;
 						}
 					}
@@ -523,7 +525,7 @@ textarea{
 						padding-left: 20px;
 						padding-right: 20px;
 						border-radius: 0.2rem;
-						font-family: "SpaceMonoReg";
+						font-family: monospace;
 						background-color: transparent;
 						border: 0.5px solid #555;
 						font-size: 1.2vw;
@@ -554,7 +556,7 @@ textarea{
 						.message-container{
 							margin-left: 15px;
 							.para{
-								font-family: "SpaceMonoReg";
+								font-family: monospace;
 								font-size: 14px;
 							}
 						}
@@ -614,7 +616,7 @@ textarea{
 					}
 
 					.para{
-						font-size: 0.9vw;
+						font-size: 1vw;
 					}
 				}
 
