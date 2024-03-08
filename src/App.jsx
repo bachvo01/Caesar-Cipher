@@ -314,7 +314,7 @@ function App() {
             <form onSubmit={handleSubmit} className='form-container'>
               <div className='input-container'>
                 <div className='row one'>
-                  <label htmlFor = 'text-input'>Input text:</label>
+                  <label htmlFor = 'text-input'>Plaintext:</label>
                   {
                     isClicked === false || done ? <textarea id = 'text-input' type='textarea' style={done ? {color : "#cbcbcb"} : null} onChange={(e) => {setInput(e.target.value)}} value={input}></textarea> 
                     : <Highlighter string = {input} speed ={selectedOption} updateClicked = {updateClicked} updateComparison = {updateInput} updateDone = {updateDone}></Highlighter>
@@ -322,7 +322,7 @@ function App() {
      
                 </div>
                 <div className='row two'>
-                  <label htmlFor='text-area'>Output text:</label>
+                  <label htmlFor='text-area'>Ciphertext:</label>
                   {
                     isClicked === false && <textarea id='text-area' name='textarea' disabled value={output} onChange={e => setOutput(e.target.value)}>{output}</textarea>
                   }
