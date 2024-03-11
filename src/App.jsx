@@ -188,35 +188,40 @@ function App() {
   return (
     <div className='main-container'>
       <div className='sidebar-container'>
-        <div className='sidebar-elements selected' onMouseEnter={handleHoverIn} onMouseLeave={handleHoverOut}>
-          <BsHouse className='icon'></BsHouse>
+          <div className='sidebar-upper'>
+            <div className='sidebar-elements selected' onMouseEnter={handleHoverIn} onMouseLeave={handleHoverOut}>
+              <BsHouse className='icon'></BsHouse>
+            </div>
+            <div className='sidebar-elements' id = 'alphabets' onClick={() => setSelected(!selected)}>
+              {
+                alphabet.name === 'latin' 
+                ? <TbAlphabetLatin className='icon alphabet'></TbAlphabetLatin>
+                : <TbAlphabetGreek className='icon alphabet'></TbAlphabetGreek>
+              }
+              {
+                selected &&
+                <motion.div key ='option' variants={optionVariant} initial="initial" animate='visible' exit='exit' className='alphabet-options' ref={toggleRef}>
+                  <div className={alphabet.name === 'latin' ? 'option selected' : 'option'} onClick={() => setAlphabet({type : latin, name : 'latin'})}>
+                    <TbAlphabetLatin className='option-icon'></TbAlphabetLatin>
+                    <h1>Latin</h1>
+                  </div>
+                  <div className={alphabet.name === 'greek' ? 'option selected' : 'option'} onClick={() => setAlphabet({type : greek, name : 'greek'})}>
+                    <TbAlphabetGreek className='option-icon'></TbAlphabetGreek>
+                    <h1>Ancient Greek</h1>
+                  </div>
+                </motion.div>
+              }
+            </div>
         </div>
-        <div className='sidebar-elements' id = 'alphabets' onClick={() => setSelected(!selected)}>
-          {
-            alphabet.name === 'latin' 
-            ? <TbAlphabetLatin className='icon alphabet'></TbAlphabetLatin>
-            : <TbAlphabetGreek className='icon alphabet'></TbAlphabetGreek>
-          }
-          {
-            selected &&
-            <motion.div key ='option' variants={optionVariant} initial="initial" animate='visible' exit='exit' className='alphabet-options' ref={toggleRef}>
-              <div className={alphabet.name === 'latin' ? 'option selected' : 'option'} onClick={() => setAlphabet({type : latin, name : 'latin'})}>
-                <TbAlphabetLatin className='option-icon'></TbAlphabetLatin>
-                <h1>Latin</h1>
-              </div>
-              <div className={alphabet.name === 'greek' ? 'option selected' : 'option'} onClick={() => setAlphabet({type : greek, name : 'greek'})}>
-                <TbAlphabetGreek className='option-icon'></TbAlphabetGreek>
-                <h1>Ancient Greek</h1>
-              </div>
-            </motion.div>
-          }
+          
+        <div className='sidebar-lower'>
+          <a href='https://github.com/bachvo01/Caesar-Cipher/issues' target='_blank' rel="noreferrer noopener" className='sidebar-elements' onMouseEnter={handleHoverIn} onMouseLeave={handleHoverOut}>
+            <BiBug className='icon'></BiBug>
+          </a>
+          <a href='https://github.com/bachvo01/Caesar-Cipher' target='_blank' rel="noreferrer noopener" className='sidebar-elements' onMouseEnter={handleHoverIn} onMouseLeave={handleHoverOut}>
+            <FaGithub className='icon'></FaGithub>
+          </a>
         </div>
-        <a href='https://github.com/bachvo01/Caesar-Cipher/issues' target='_blank' rel="noreferrer noopener" className='sidebar-elements' onMouseEnter={handleHoverIn} onMouseLeave={handleHoverOut}>
-          <BiBug className='icon'></BiBug>
-        </a>
-        <a href='https://github.com/bachvo01/Caesar-Cipher' target='_blank' rel="noreferrer noopener" className='sidebar-elements' onMouseEnter={handleHoverIn} onMouseLeave={handleHoverOut}>
-          <FaGithub className='icon'></FaGithub>
-        </a>
       </div>
       <div className='main-inner'>
         <div className='cipher-container'>
