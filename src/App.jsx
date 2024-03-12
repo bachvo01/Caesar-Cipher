@@ -7,6 +7,7 @@ import {motion, AnimatePresence, FlatTree} from "framer-motion"
 import Tag from './components/Tag'
 import Footer from './components/Footer'
 
+import { CgMenuGridO } from "react-icons/cg";
 import { GiTortoise } from "react-icons/gi"
 import { GiRabbit } from "react-icons/gi";
 import { FaGithub } from "react-icons/fa";
@@ -38,6 +39,7 @@ function App() {
     name : "latin"
   })
 
+  const [screen, setScreen] = useState(window.innerWidth)
   const [isReseted, setIsReseted] = useState(false)
   const [selected, setSelected] = useState(false)
   const [done, setDone] = useState(false)
@@ -161,6 +163,7 @@ function App() {
 
   useEffect(() => {
     setExtended(alphabet)
+
   }, [alphabet])
 
   const toggleRef = useRef(null)
@@ -184,10 +187,22 @@ function App() {
     }
   }, [input, prevInput, done])
 
+  // useEffect(() => {
+  //   setScreen(window.innerWidth)
+  // }, [screen])
+
   
   return (
     <div className='main-container'>
-      <div className='sidebar-container'>
+      {
+        screen < 480 ? 
+        <div className='sidebar-mobile-container'>
+          <button type='button' className='toggler'>
+            <CgMenuGridO className='icon'></CgMenuGridO>
+          </button>
+        </div>
+        :
+        <div className='sidebar-container'>
           <div className='sidebar-upper'>
             <div className='sidebar-elements selected' onMouseEnter={handleHoverIn} onMouseLeave={handleHoverOut}>
               <BsHouse className='icon'></BsHouse>
@@ -223,6 +238,8 @@ function App() {
           </a>
         </div>
       </div>
+      }
+      
       <div className='main-inner'>
         <div className='cipher-container'>
           <div className='fact-container'>
@@ -230,7 +247,7 @@ function App() {
             <p className='para'>The Caesar Cipher, named after Julius Caesar who reputedly used it, is one of the simplest and earliest known encryption techniques. It operates by shifting each letter of the plaintext a fixed number of positions down or up the alphabet. For instance, with a shift of 3, "A" becomes "D", "B" becomes "E", and so on.<br></br><br></br>Despite its elementary nature, the Caesar Cipher provides a basic level of secrecy, suitable for casual communication or educational purposes. However, due to its predictable nature and vulnerability to brute-force attacks, it is not considered secure for modern cryptographic needs.</p>
           </div>
           <div className='computing-container'>
-            <div className='alphabet-container'>
+            <div className='alphabet-container' id='alphabet'>
               <div className='row'>
               {
                 alphabet.type.map((letter, index) => {

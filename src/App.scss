@@ -658,6 +658,202 @@ textarea{
   /* Mobile Portrait */
 @media only screen and (min-width: 320px) and (max-width: 480px) {
 	/* Your CSS styles for mobile portrait layout here */
+	.main-container{
+		// height: max-content;
+		height: max-content;
+		display: flex;
+		flex-direction: column;
+		width: 100%;
+		// justify-content: center;
+		align-items: center;
+		padding-top: 60px;
+		
+		.sidebar-mobile-container{
+			display: none;
+			position: fixed;
+			left: -100vw;
+			width: 100vw;
+			background-color: #222;
+			// left: -90px;
+			height: 100vh;
+			box-shadow: 0px 0px 30px 10px rgb(19 19 19 / 45%);
+			z-index: 3000;
+			
+			.toggler{
+				position: sticky;
+				top: calc(100vh - 60px);
+				bottom: 60px;
+				left: 30px;
+				background-color: #333;
+				border-radius: 100%;
+				display: flex;
+				border: none;
+				margin: 0;
+				padding: 0;
+				width: auto;
+				// overflow: visible;
+			}
+		}
+
+		.main-inner{
+			margin: 0;
+			width: calc(100% - 40px);
+			
+			
+			.cipher-container{
+				display: flex;
+				flex-direction: column;
+				width: 100%;
+				row-gap: 45px;
+
+				.fact-container{
+					width: 100%;
+					.name{
+						font-size: 8vw;
+						margin-bottom: 30px;
+					}
+					.para{
+						font-size: 0.8rem;
+						text-wrap: wrap;
+					}
+				}
+
+				.computing-container{
+					width: 100%;
+
+					.alphabet-container{
+						margin-bottom: 15px;
+						.row{
+							// display: table-column;
+							.letter{
+								font-size: 0.6rem;
+								height: 1.5em;
+								width: 2em;
+
+							}
+						}
+					}
+
+					.mapped-outer{
+						margin-bottom: 30px;
+						.mapped-container{
+							.mapped-inner{
+								.letter{
+									font-size: 0.6rem;
+									// padding-top: 2px;
+									// padding-bottom: 2px;
+									height: 1.5em;
+									width: 2em;
+								}
+							}
+						}
+					}
+
+					.form-container{
+						display: flex;
+						flex-direction: column;
+
+						.input-container{
+							display: grid;
+							grid-template-columns: repeat(2, 1fr);
+							width: 100%;
+							column-gap: 10px;
+							height: 120px;
+							min-height: 0;
+							margin-bottom: 15px;
+							.row{
+								height: 100%;
+								row-gap: 10px;
+								margin-bottom: 0;
+								textarea{
+									padding: 3px;
+									font-size: 0.6rem;
+								}
+
+								&.one{
+									label{
+										font-size: 0.6rem;
+									}
+								}
+
+								&.two{
+									label{
+										font-size: 0.6rem;
+									}
+								}
+							}
+						}
+
+						.output-container{
+							width: 100%;
+							column-gap: 10px;
+							display: grid;
+							grid-template-columns: repeat(2, 1fr);
+							margin-bottom: 0;
+							.column{
+								width: 100%;
+
+								label{
+									font-size: 0.6rem;
+								}
+
+								&.one{
+									width: 100%;
+
+									input{
+										width: 10vw;
+										height: 20px;
+										padding: 3px;
+										font-size: 0.6rem;
+									}
+								}
+
+								&.two{
+									width: 100%;
+									.option-container{
+										width: 100%;
+										column-gap: 10px;
+	
+										.turtle{
+											.icon{
+												font-size: 20px;
+	
+												path{
+													font-size: 20px;
+												}
+											}
+										}
+
+										.option-list{
+											column-gap: 10px;
+
+											input[type=radio] + .checkmark{
+												height: 10px;
+												width: 10px;
+												margin-right: 0;
+											}
+										}
+
+										.bunny{
+											.icon{
+												font-size: 18px;
+	
+												path{
+													font-size: 18px;
+												}
+											}
+										}
+									}
+								}
+
+								
+							}
+						}
+					}
+				}
+			}
+		}
+	}
 }
 
 /* Mobile Landscape */
