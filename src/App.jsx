@@ -392,12 +392,14 @@ function App() {
                     <input type='number' min="0" max={alphabet.type.length} disabled = {isClicked ? true : false} id='shift' onChange={(e) => {setStep(e.target.value)}} value={step}></input>
                   </div>
               </div>
-              
+              {
+                done && screen <= 480 && <Typewriter text="Want to try again? Hit reset!" speed={80}></Typewriter>
+              }
               <div className='button-wrapper'>
                 <button type='submit' className={input.length === 0 ? 'submit-button disabled' : 'submit-button'} disabled = {input === prevInput ? true : false}>Encrypt</button>
                 <button type='reset' className='reset-button' onClick={handleReset}>Reset</button>
                 {
-                  done && <Typewriter text="Want to try again? Hit reset!" speed={80}></Typewriter>
+                  done && screen > 480 && <Typewriter text="Want to try again? Hit reset!" speed={80}></Typewriter>
                 }
               </div>       
             </form>

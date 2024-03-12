@@ -667,6 +667,7 @@ textarea{
 		// justify-content: center;
 		align-items: center;
 		padding-top: 60px;
+		padding-bottom: 60px;
 		
 		.sidebar-mobile-container{
 			display: none;
@@ -709,8 +710,8 @@ textarea{
 				.fact-container{
 					width: 100%;
 					.name{
-						font-size: 8vw;
-						margin-bottom: 30px;
+						font-size: 6vw;
+						margin-bottom: 15px;
 					}
 					.para{
 						font-size: 0.8rem;
@@ -759,12 +760,30 @@ textarea{
 							width: 100%;
 							column-gap: 10px;
 							height: 120px;
-							min-height: 0;
+							min-height: 100px;
 							margin-bottom: 15px;
+							
 							.row{
 								height: 100%;
+								width: 100%;
 								row-gap: 10px;
 								margin-bottom: 0;
+								
+								.input-highlight-container{
+									// padding: 3px;
+									font-size: 0.6rem;
+									width: 100%;
+									padding: 0;
+									// overflow: scroll;
+									.para{
+										padding: 0;
+										display: block;
+									}
+
+									&::-webkit-scrollbar {
+										width: 1em;
+									}
+								}
 								textarea{
 									padding: 3px;
 									font-size: 0.6rem;
@@ -789,7 +808,7 @@ textarea{
 							column-gap: 10px;
 							display: grid;
 							grid-template-columns: repeat(2, 1fr);
-							margin-bottom: 0;
+							margin-bottom: 30px;
 							.column{
 								width: 100%;
 
@@ -802,8 +821,8 @@ textarea{
 
 									input{
 										width: 10vw;
-										height: 20px;
-										padding: 3px;
+										height: 15px;
+										padding: 3px 6px;
 										font-size: 0.6rem;
 									}
 								}
@@ -848,6 +867,53 @@ textarea{
 
 								
 							}
+						}
+
+						.message-container{
+							margin-bottom: 15px;
+							width: 100%;
+							display: flex;
+							justify-content: center;
+							align-items: center;
+							.para{
+								font-family: monospace;
+								font-size: 0.6rem;
+							}
+						}
+
+						.button-wrapper{
+							display: flex;
+							// flex-direction: column;
+							margin-top: 0px;
+							column-gap: 10px;
+							align-items: center;
+							width: 100%;
+
+							button{
+								font-size: 1.2vw;
+								padding: 10px 0px;
+							}
+
+							.reset-button{
+								background-color: #cbcbcb;
+								color: #222;
+								width: 100%;
+								font-size: 0.6rem;
+							}
+	
+							.submit-button{
+								width: 100%;
+								transition: 0.3s ease;
+								font-size: 0.6rem;
+								&.disabled{
+									opacity: 0.5;
+									user-select: none;
+									cursor: not-allowed;
+									transition: 0.3s ease;
+								}
+							}
+	
+							
 						}
 					}
 				}
