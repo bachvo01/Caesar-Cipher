@@ -654,6 +654,20 @@ textarea{
 	}
   }
 
+@keyframes fadeIn {
+	0% {
+		opacity: 0;
+	}
+
+	50% {
+		opacity: 0.5;
+	}
+
+	100% {
+		opacity: 1;
+	}
+}
+
 
   /* Mobile Portrait */
 @media only screen and (min-width: 320px) and (max-width: 480px) {
@@ -668,31 +682,55 @@ textarea{
 		align-items: center;
 		padding-top: 60px;
 		padding-bottom: 60px;
-		
+		position: relative;
 		.sidebar-mobile-container{
-			display: none;
+			// display: none;
 			position: fixed;
-			left: -100vw;
-			width: 100vw;
+			top: 0;
+			left: -75vw;
+			// transform: translateX(0);
+			width: 70vw;
 			background-color: #222;
 			// left: -90px;
-			height: 100vh;
-			box-shadow: 0px 0px 30px 10px rgb(19 19 19 / 45%);
+			height: calc(100vh);
+			box-shadow: 0px 0px 20px 10px rgb(19 19 19 / 45%);
 			z-index: 3000;
+			transition: 0.3s ease;
+			// padding: 120px 0px;
+			&.toggled{
+				transform: translateX(75vw);
+				transition: 0.3s ease;
+				
+			}
 			
 			.toggler{
-				position: sticky;
+				position: fixed;
 				top: calc(100vh - 60px);
-				bottom: 60px;
-				left: 30px;
-				background-color: #333;
+				bottom: 15px;
+				left: 15px;
+				background-color: #33333395;
+				box-shadow: 0 5px rgb(19 19 19 / 15%);
 				border-radius: 100%;
 				display: flex;
+				align-items: center;
+				justify-content: center;
 				border: none;
 				margin: 0;
 				padding: 0;
-				width: auto;
+				width: 45px;
+				height: 45px;
+				animation: fadeIn 0.3s linear 1;
+				.icon{
+					font-size: 15px;
+				}
 				// overflow: visible;
+			}
+
+			.sidebar-container{
+				position: absolute;
+				box-shadow: none;
+				width: 100%;
+				bottom: 60px;
 			}
 		}
 
