@@ -26,6 +26,7 @@ A Caesar cipher with a shift of
 This project is a visualisation of Caesar Cipher - one of the oldest cipher in the human history. The main goal is to provide users an intuitive vision of how the cipher works. &ensp;
 <br></br>
 
+<!--
 ## History
 
 <div align = 'center'>
@@ -43,6 +44,7 @@ In Julius Caesar’s Gallic Wars, he describes how he sent a message to the besi
 <div align ='center'>
     Gallic Wars, Gaul, 58–50 BC
 </div>&ensp;
+--> 
 
 <!-- <div align ='center'>
     <img src = './public/gallic-wars.jpg' alt='gallic-wars'>Gallic Wars, Gaul, 58–50 BC</img>
